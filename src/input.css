@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+/* Base style for a slight aesthetic improvement, complementing Tailwind's Preflight */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Background classes for dynamic change (weather conditions) */
+/* The JS will toggle these classes on top #app-body element */
+
+.bg-clear {
+    background-image: linear-gradient(to top right, #3b82f6, #1D4ED8); /* Blue sky */
+}
+
+.bg-clouds {
+    background-image: linear-gradient(to top right, #6b7280, #374151); /* Gray clouds */
+}
+
+.bg-rain {
+    background-image: linear-gradient(to top right, #4B5563, #1F2937); /* Rainy/stormy */
+}
+
+.bg-snow {
+    background-image: linear-gradient(to top right, #E5E7EB, #1F2937); /* Snowy */
+}
+
+.bg-thunderstorm {
+    background-image: linear-gradient(to top right, #374151, #111827); /* Thunderstorm */
+}
+
+.bg-mist {
+    background-image: linear-gradient(to top right, #9CA3AF, #6B7280); /* Mist/fog */
+}
+
+/* Default dark background when no weather data is loaded */
+.bg-default{
+    background-color: #0d1117;
+}

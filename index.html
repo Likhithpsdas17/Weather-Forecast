@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Forecast</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./styles.css">
+  <link href="./src/output.css" rel="stylesheet">
+      <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#0D1117',
+                        'secondary': '#161B22',
+                        'accent': '#238636',
+                        'text-light': '#F0F6FC',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-text-light min-h-screen transition-all duration-1000" id="app-body" >
+    <div class="container mx-auto p-4 sm:p-8">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">Weather Insights 🌤️</h1>
+            <p class="text-xl text-gray-400 mt-2">Accurate and Reliable Weather Forecasts</p>
+        </header>
+
+        <div class="max-w-xl mx-auto mt-8 bg-secondary rounded-xl p-6 shadow-xl border border-gray-700">
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input type="text" id="city-input" placeholder="Bengaluru" class="grow p-3 rounded-lg border border-gray-600 bg-primary text-text-light focus:outline-none focus:ring-2 focus:ring-accent" aria-label="City Name Input">
+                <button id="search-btn" class="p-3 bg-accent text-white font-semibold rounded-lg hover:bg-green-700 transition duration-200 whitespace-nowrap">Search 🔍</button>
+            </div>
+
+            <div class="flex items-center justify-center mt-3 text-gray-400">
+                <hr class="grow border-gray-700">
+                <span class="px-3 text-sm">or</span>
+                <hr class="grow border-gray-700">
+            </div>
+
+            <button id="current-loc-btn" class="w-full mt-3 p-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition duration-200">
+                The Current Location 📍
+            </button>
+
+            <div class="relative mt-4">
+                <select id="Search-his-select" class="w-full p-3 rounded-lg border-gray-600 bg-primary text-text-light focus:outline-none focus:ring-2  focus:ring-accent" disabled>
+                    <option value="" disabled selected>Recently Searched Cities</option>
+                </select>
+            </div>
+        </div>
+
+            <div id="alert-container" class="max-w-xl mx-auto mb-6">
+            </div>
+
+            <div id="weather-display" class="grid grid-cols-1 lg:grid-cols-3 gap-8 opacity-0 transition-opacity duration-500">
+                
+                <div id="current-weather-card" class="lg:col-span-2 bg-secondary p-8 rounded-2xl shadow-2xl border border-gray-700">
+                    <h2 class="text-3xl font-bold mb-4 border-b border-gray-700 pb-2">Today's Weather</h2>
+
+                    <div id="current-city-info" class="mb-4">
+                        <p class="text-5xl font-bold text-accent" id="current-city-name">...</p>
+                        <p class="text-lg text-gray-400" id="current-date">...</p>
+                    </div>
+
+
+                <div class="flex flex-wrap items-center gap-8">
+                    <div class="flex items-center">
+                        <img id="current-weather-icon" src="" alt="Weather Icon" class="w-24 h-24">
+                        <div class="text-7xl font-light">
+                            <span id="current-temp">--</span>
+                            <span id="temp-unit" class="cursor-pointer text-4xl font-normal hover:text-red-400" data-unit="C">°C</span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 text-lg">
+                        <div class="detail-item">Humidity: <span id="current-humidity" class="font-semibold">--%</span></div>
+                        <div class="detail-item">Wind Speed: <span id="current-wind" class="font-semibold">-- m/s</span></div>
+                        <div class="detail-item">Condition: <span id="current-condition" class="font-semibold">--</span></div>
+                        <div class="detail-item">Feels Like: <span id="current-feels-like" class="font-semibold">--°C</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-1 bg-secondary p-8 rounded-2xl shadow-2xl border border-gray-700 hidden lg:block">
+                <h2 class="text-3xl font-bold mb-4 border-b border-gray-700 pb-2">Sun & Pressure</h2>
+                <div class="space-y-4 text-lg">
+                    <div class="flex justify-between items-center">
+                        <span>Sunrise 🌅:</span>
+                        <span id="current-sunrise" class="font-semibold">--</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span>Sunset 🌇:</span>
+                        <span id="current-sunset" class="font-semibold">--</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span>Pressure 💨:</span>
+                        <span id="current-pressure" class="font-semibold">-- hPa</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-3 mt-4">
+                <h2 class="text-3xl font-bold mb-4 text-white">5-Day Forecast (3-Hour Steps)</h2>
+                <div id="forecast-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                    <p class="text-gray-400 col-span-full" id="forecast-placeholder">Search for a city to see the extended forecast.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./src/script.js"></script>
+</body> 
+</html>
