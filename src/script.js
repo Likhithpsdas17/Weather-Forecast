@@ -2,7 +2,7 @@
 // IMPORTANT: replace this with your own key locally before running.
 const API_KEY = "YOUR_API_KEY_HERE";
 
-// Use the 2.5 API base for current weather and 5-day forecast endpoints
+// Use the 2.5 API base for current weather and 5-day forecast endpoints.
 const BASE_URL = "https://api.openweathermap.org/data/2.5/";
 const DEFAULT_CITY = "Bengaluru";
 
@@ -290,12 +290,12 @@ async function getCoordinates(city) {
  * Renders the current weather data onto the main card.
  */
 function renderCurrentWeather(data, cityNameOverride = null) {
-    const tempK = data.main.temp + 273.15; // Convert back to Kelvin for accurate toggling later
+    const tempK = data.main.temp + 273.15; 
     const temp = convertTemp(tempK, isCelsius ? 'C' : 'F');
     const feelsLike = convertTemp(data.main.feels_like + 273.15, isCelsius ? 'C' : 'F');
     const unitSymbol = isCelsius ? '°C' : '°F';
     
-    // Task 4: Custom Weather Alert for extreme heat (>40°C)
+    
     if (parseFloat(temp) > 40 && isCelsius) {
         displayMessage(`Extreme Heat Alert! Temperature is ${temp}${unitSymbol}. Stay hydrated!`, 'alert');
     } else if (parseFloat(temp) < -10 && isCelsius) {
@@ -329,8 +329,7 @@ function renderCurrentWeather(data, cityNameOverride = null) {
 }
 
 /**
- * Renders the 5-day forecast cards (Task 4: Extended 5-day forecast).
- * Note: The API provides 3-hour interval data. We filter to get one card per day.
+ * Renders the 5-day forecast cards.
  * @param {Array} list The list of 3-hour forecast objects.
  */
 function renderForecast(list) {
@@ -357,7 +356,7 @@ function renderForecast(list) {
     });
 
     // Extract the forecasts, skipping the current day
-    const forecastDays = Object.values(dailyForecasts).slice(1, 6); // Get next 5 days
+    const forecastDays = Object.values(dailyForecasts).slice(1, 6); 
 
     if (forecastDays.length === 0) {
         forecastContainer.innerHTML = '<p class="text-gray-400 col-span-full">No extended forecast data available.</p>';
@@ -365,7 +364,6 @@ function renderForecast(list) {
     }
 
     forecastDays.forEach(day => {
-        // Find midday temperature (or use a simple average/midpoint)
         const avgTempK = day.temps.reduce((sum, t) => sum + t, 0) / day.temps.length;
         const temp = convertTemp(avgTempK + 273.15, isCelsius ? 'C' : 'F');
         const unitSymbol = isCelsius ? '°C' : '°F';
@@ -404,7 +402,7 @@ function renderForecast(list) {
 // --- EVENT HANDLERS ---
 
 /**
- * Toggles temperature unit (°C / °F) (Task 4: Unit Toggle) and re-renders all temperature fields.
+ * Toggles temperature unit (°C / °F).
  */
 function toggleTemperatureUnit() {
     isCelsius = !isCelsius;
@@ -425,7 +423,6 @@ loadSearchHistory();
 // Set up Event Listeners
 searchBtn.addEventListener('click', () => {
     const city = cityInput.value.trim();
-    // Task 6: Validate user inputs (empty search)
     if (city === "") {
         displayMessage("Please enter a city name to search.", 'error');
         return;
@@ -441,7 +438,7 @@ cityInput.addEventListener('keypress', (e) => {
 
 locationButton.addEventListener('click', handleLocation);
 
-// Geolocation handler (missing earlier)
+// Geolocation handler 
 function handleLocation() {
     if (!navigator.geolocation) {
         displayMessage('Geolocation is not supported by your browser.', 'error');
@@ -452,7 +449,7 @@ function handleLocation() {
     navigator.geolocation.getCurrentPosition(async (pos) => {
         const { latitude: lat, longitude: lon } = pos.coords;
         try {
-            // Try to reverse-geocode via the weather endpoint (by coords)
+           
             await getWeatherByCoords(lat, lon, 'Your Location');
         } catch (err) {
             console.error('Location weather fetch failed', err);
