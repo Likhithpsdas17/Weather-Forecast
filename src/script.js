@@ -1,16 +1,10 @@
-// API key for OpenWeatherMap.
+// API key for OpenWeatherMap Inserted As Instructed.
 const API_KEY = "3f807c3308ebb737e45cf9b85af0163b";
 
 // Use the 2.5 API base for current weather and 5-day forecast endpoints.
 const BASE_URL = "https://api.openweathermap.org/data/2.5/";
 const DEFAULT_CITY = "Bengaluru";
 
-// Fetchs default city Weather Forecast.
-window.addEventListener('load', () => {
-  if (DEFAULT_CITY && DEFAULT_CITY.trim() !== '') {
-    getCoordinates(DEFAULT_CITY);
-  }
-});
 
 // DOM elements
 const appBody = document.getElementById("app-body");
@@ -467,13 +461,22 @@ function handleLocation() {
 }
 
 // Listener for the temperature toggle on the unit symbol itself
-tempUnitSpan.addEventListener('click', toggleTemperatureUnit);
+if(tempUnitSpan) tempUnitSpan.addEventListener('click', toggleTemperatureUnit);
 
 // Listener for search history dropdown
-searchHistorySelect.addEventListener('change', (e) => {
+if(searchHistorySelect) {
+  searchHistorySelect.addEventListener('change', (e) => {
     const city = e.target.value;
     if (city) {
         cityInput.value = city;
         getCoordinates(city);
     }
+});
+}
+
+// Fetchs default city Weather Forecast.
+window.addEventListener('load', () => {
+  if (DEFAULT_CITY && DEFAULT_CITY.trim() !== '') {
+    getCoordinates(DEFAULT_CITY);
+  }
 });
