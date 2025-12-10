@@ -1,4 +1,12 @@
-# Weather Forecast — Weather Insights
+# Weather Insights — Updated for Resubmission
+
+**Updated:** Replaced the placeholder `YOUR_API_KEY_HERE` with a valid OpenWeatherMap API key in `src/script.js`.
+
+## What changed
+- `src/script.js` now contains the real API key in the `API_KEY` constant:
+  ```js
+  const API_KEY = "3f807c3308ebb737e45cf9b85af0163b";
+
 **Important** My Github Link For Reference To The Exact Code "https://github.com/Likhithpsdas17/Weather-Forecast"
 **Project:** Weather Insights — shows current weather and a 5-day forecast using OpenWeatherMap.
 
@@ -18,10 +26,6 @@
 
 **How to run (recommended)**
 simply open `index.html` in a modern browser (some features like geolocation work best when served).
-
-**API key (important)**
-- This repo contains a placeholder: `YOUR_API_KEY_HERE` in `src/script.js`.
-- Before running, replace that string with your OpenWeatherMap API key or create a local `src/config.js` as directed in the assignment instructions.
 
 **Tailwind / Styling**
 - The compiled Tailwind CSS is included as `src/output.css`, so no build step is required. The page loads styling locally and via CDN fallback.
