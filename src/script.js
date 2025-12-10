@@ -1,6 +1,5 @@
 // API key for OpenWeatherMap
-// IMPORTANT: replace this with your own key locally before running.
-const API_KEY = "YOUR_API_KEY_HERE";
+const API_KEY = "3f807c3308ebb737e45cf9b85af0163b";
 
 // Use the 2.5 API base for current weather and 5-day forecast endpoints.
 const BASE_URL = "https://api.openweathermap.org/data/2.5/";
@@ -290,8 +289,7 @@ async function getCoordinates(city) {
  * Renders the current weather data onto the main card.
  */
 function renderCurrentWeather(data, cityNameOverride = null) {
-    const tempK = data.main.temp + 273.15; 
-    const temp = convertTemp(tempK, isCelsius ? 'C' : 'F');
+    const temp = isCelsius ? data.main.temp.toFixed(1) : ((data.main.temp * 9/5) + 32).toFixed(1);
     const feelsLike = convertTemp(data.main.feels_like + 273.15, isCelsius ? 'C' : 'F');
     const unitSymbol = isCelsius ? '°C' : '°F';
     
